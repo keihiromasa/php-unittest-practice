@@ -23,7 +23,6 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
     <form action="todo.php" method="post">
         <input type="text" name="<?php echo TODOViewElems::TODO ?>" size="40">
         <input type="submit" value="登録">
-        </p>
     </form>
 </body>
 </html>
