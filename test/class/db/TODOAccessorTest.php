@@ -39,7 +39,7 @@ class TODOAccessorTest extends PHPUnit_Framework_TestCase {
     public function testInsert() {
         $accessor = new TODOAccessor($this->pdo);
         $value = '牛乳を買う';
-        $accessor->insert(new TODO($value));
+        $this->assertTrue($accessor->insert(new TODO($value)));
         $this->assertEquals($accessor->selectAll(), array(new TODO($value)));
     }
 
