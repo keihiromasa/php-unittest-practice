@@ -26,9 +26,11 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
     if (isset($dupulicationMessage)) {
         echo "<span>${dupulicationMessage}</span>";
     }
+    printStartUlTag($todoList);
     foreach ($todoList as $todo) {
-        echo '<div>' . $todo->get() . '</div>';
+        echo '<li class="list-group-item">' . $todo->get() . '</li>';
     }
+    printEndUlTag($todoList);
     ?>
 
     <form action="todo.php" method="post">
@@ -38,3 +40,16 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
 </body>
 </html>
 
+<?php
+
+function printStartUlTag($todoList) {
+    if (!empty($todoList)) {
+        echo '<ul class="list-group">';
+    }
+}
+
+function printEndUlTag($todoList) {
+    if (!empty($todoList)) {
+        echo '</ul>';
+    }
+}
