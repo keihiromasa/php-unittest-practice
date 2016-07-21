@@ -12,15 +12,23 @@ class TODOAccessorTest extends PHPUnit_Framework_TestCase {
         $this->pdo->query("create table todo_list(todo nvarchar(100) primary key)");
     }
 
-    /**
-     * @covers TODOAccessor::selectAll
-     * @todo   Implement testSelectAll().
-     */
+    public function testSelectはデータがない場合にnullを返す() {
+        $accessor = new TODOAccessor($this->pdo);
+        $this->assertNull($accessor->select(new TODO('ミルクを買う')));
+    }
+
+    public function testSelect() {
+        $accessor = new TODOAccessor($this->pdo);
+        $value = new TODO('ミルクを買う');
+        $accessor->insert($value);
+        $this->assertEquals($accessor->select($value), $value);
+    }
+
     public function testSelectAll() {
         $accessor = new TODOAccessor($this->pdo);
-        $value = 'たのむで！';
-        $accessor->insert(new TODO($value));
-        $this->assertEquals($accessor->selectAll(), array(new TODO($value)));
+        $value = new TODO('ミルクを買う');
+        $accessor->insert($value);
+        $this->assertEquals($accessor->selectAll(), array($value));
     }
 
     public function testSelectAllは結果が０件の時は空のリストを返す() {
@@ -33,6 +41,13 @@ class TODOAccessorTest extends PHPUnit_Framework_TestCase {
         $value = '牛乳を買う';
         $accessor->insert(new TODO($value));
         $this->assertEquals($accessor->selectAll(), array(new TODO($value)));
+    }
+
+    public function testInsertは重複データがある場合にfalseを返す() {
+        $accessor = new TODOAccessor($this->pdo);
+        $value = '牛乳を買う';
+        $accessor->insert(new TODO($value));
+        $this->assertFalse($accessor->insert(new TODO($value)));
     }
 
 }

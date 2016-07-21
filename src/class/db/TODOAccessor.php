@@ -4,10 +4,23 @@ require_once dirname(__FILE__) . '/../TODO.php';
 
 class TODOAccessor {
 
+    const COLUMN_TODO = 'todo';
+
     private $pdo;
 
     public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
+    }
+
+    public function select(TODO $todo) {
+        $statement = $this->pdo->prepare('select todo from todo_list where todo = :todo');
+        $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
+        $statement->execute();
+        $results = $statement->fetchAll();
+        if (count($results) === 0) {
+            return null;
+        }
+        return new TODO($results[0][TODOAccessor::COLUMN_TODO]);
     }
 
     /**
@@ -22,6 +35,9 @@ class TODOAccessor {
     }
 
     public function insert(TODO $todo) {
+        if ($this->select($todo) !== null) {
+            return false;
+        }
         $this->pdo->beginTransaction();
         $statement = $this->pdo->prepare('insert into todo_list (todo) values (:todo)');
         $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
@@ -34,7 +50,7 @@ class TODOAccessor {
             return array();
         }
         foreach ($rowResults as $rowResult) {
-            $results[] = new TODO($rowResult['todo']);
+            $results[] = new TODO($rowResult[TODOAccessor::COLUMN_TODO]);
         }
         return $results;
     }
