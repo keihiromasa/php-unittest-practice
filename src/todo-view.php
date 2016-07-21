@@ -14,6 +14,14 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
     </head>
 </head>
 <body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>TODOリスト</h1>
+            <p>phpunit練習用のTODOアプリです。</p>
+            <p>あくまでphpunitの練習を目的としているため、色々な脆弱性などあります。</p>
+            <p>ご利用は計画的に。何かあっても作者は責任は取れません。</p>
+        </div>
+    </div>
     <?php
     if (isset($dupulicationMessage)) {
         echo "<span>${dupulicationMessage}</span>";
