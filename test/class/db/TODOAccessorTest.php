@@ -9,7 +9,7 @@ class TODOAccessorTest extends PHPUnit_Framework_TestCase {
     public function setUp() {
         $this->pdo = new PDO('sqlite::memory:');
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->pdo->query("create table todo_list(todo nvarchar(100))");
+        $this->pdo->query("create table todo_list(todo nvarchar(100) primary key)");
     }
 
     /**
