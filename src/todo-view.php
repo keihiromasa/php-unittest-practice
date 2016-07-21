@@ -15,6 +15,9 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
 </head>
 <body>
     <?php
+    if (isset($dupulicationMessage)) {
+        echo "<span>${dupulicationMessage}</span>";
+    }
     foreach ($todoList as $todo) {
         echo '<div>' . $todo->get() . '</div>';
     }

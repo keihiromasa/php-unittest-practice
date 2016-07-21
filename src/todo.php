@@ -7,7 +7,9 @@ require_once 'class/RequestToTODO.php';
 require_once 'class/TODORepositoryFactory.php';
 
 $repository = TODORepositoryFactory::create();
-$repository->add(RequestToTODO::convert($_POST));
+if (!$repository->add(RequestToTODO::convert($_POST))) {
+    $dupulicationMessage = '同じTODOは登録できません';
+}
 $todoList = $repository->fetchAll();
 
 include 'todo-view.php';
