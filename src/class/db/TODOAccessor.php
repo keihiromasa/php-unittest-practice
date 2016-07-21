@@ -10,6 +10,10 @@ class TODOAccessor {
         $this->pdo = $pdo;
     }
 
+    /**
+     *
+     * @return type 存在しない場合は空のリスト
+     */
     public function selectAll() {
         $statement = $this->pdo->prepare('select todo from todo_list');
         $statement->execute();
@@ -26,6 +30,9 @@ class TODOAccessor {
     }
 
     private function convertToArray($rowResults) {
+        if (empty($rowResults)) {
+            return array();
+        }
         foreach ($rowResults as $rowResult) {
             $results[] = new TODO($rowResult['todo']);
         }

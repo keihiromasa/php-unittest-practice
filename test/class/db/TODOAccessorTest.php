@@ -23,6 +23,11 @@ class TODOAccessorTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($accessor->selectAll(), array(new TODO($value)));
     }
 
+    public function testSelectAllは結果が０件の時は空のリストを返す() {
+        $accessor = new TODOAccessor($this->pdo);
+        $this->assertEmpty($accessor->selectAll());
+    }
+
     public function testInsert() {
         $accessor = new TODOAccessor($this->pdo);
         $value = '牛乳を買う';
