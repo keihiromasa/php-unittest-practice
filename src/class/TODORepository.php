@@ -22,7 +22,7 @@ class TODORepository {
     public function fetchAll() {
         $result = $this->todoAccessor->selectAll();
         if (empty($result)) {
-            return array('まだリストがありません');
+            return array(new TODO('まだリストがありません'));
         }
         return $result;
     }
