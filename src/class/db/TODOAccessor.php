@@ -43,6 +43,7 @@ class TODOAccessor {
         $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
         $statement->execute();
         $this->pdo->commit();
+        return true;
     }
 
     private function convertToArray($rowResults) {
