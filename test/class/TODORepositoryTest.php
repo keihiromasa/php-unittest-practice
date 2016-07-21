@@ -13,7 +13,7 @@ class TODORepositoryTest extends PHPUnit_Framework_TestCase {
         $mockAccessor = $this->getMockBuilder('TODOAccessor')->disableOriginalConstructor()->getMock();
         $mockAccessor->method('selectAll')->willReturn(array());
         $target = new TODORepository($mockAccessor);
-        $this->assertEquals($target->fetchAll(), array('まだリストがありません'));
+        $this->assertEquals($target->fetchAll(), array(new TODO('まだリストがありません')));
     }
 
     public function testFetchAllはDBに登録されたデータを返す() {
@@ -22,6 +22,12 @@ class TODORepositoryTest extends PHPUnit_Framework_TestCase {
         $mockAccessor->method('selectAll')->willReturn($result);
         $target = new TODORepository($mockAccessor);
         $this->assertEquals($result, $target->fetchAll());
+    }
+
+    public function testAddはnullを渡されたらtrueを返す() {
+        $mockAccessor = $this->getMockBuilder('TODOAccessor')->disableOriginalConstructor()->getMock();
+        $target = new TODORepository($mockAccessor);
+        $this->assertTrue($target->add(null));
     }
 
 }

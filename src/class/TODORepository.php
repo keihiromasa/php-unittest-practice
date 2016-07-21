@@ -29,9 +29,9 @@ class TODORepository {
 
     public function add(TODO $todo = null) {
         if ($todo == null) {
-            return;
+            return true;
         }
-        $this->todoAccessor->insert($todo);
+        return $this->todoAccessor->insert($todo);
     }
 
 }
