@@ -33,9 +33,9 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
     printEndUlTag($todoList);
     ?>
 
-    <form action="todo.php" method="post">
-        <input type="text" name="<?php echo TODOViewElems::TODO ?>" size="40">
-        <input type="submit" value="登録">
+    <form action="todo.php" method="post" class="form-inline">
+        <input type="text" class="form-control" name="<?php echo TODOViewElems::TODO ?>" size="40">
+        <input type="submit" class="btn btn-primary" value="登録">
     </form>
 </body>
 </html>
