@@ -14,7 +14,8 @@ class TODOAccessor {
 
     public function select(TODO $todo) {
         $statement = $this->pdo->prepare('select todo from todo_list where todo = :todo');
-        $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
+        $todoValue = $todo->get();
+        $statement->bindParam(':todo', $todoValue, PDO::PARAM_STR);
         $statement->execute();
         $results = $statement->fetchAll();
         $statement->closeCursor();
@@ -42,7 +43,8 @@ class TODOAccessor {
         }
         $this->pdo->beginTransaction();
         $statement = $this->pdo->prepare('insert into todo_list (todo) values (:todo)');
-        $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
+        $todoValue = $todo->get();
+        $statement->bindParam(':todo', $todoValue, PDO::PARAM_STR);
         $statement->execute();
         $this->pdo->commit();
         $statement->closeCursor();
