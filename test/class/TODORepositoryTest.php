@@ -5,10 +5,6 @@ require_once '../src/class/db/TODOAccessor.php';
 
 class TODORepositoryTest extends PHPUnit_Framework_TestCase {
 
-    /**
-     * @covers TODORepository::fetchAll
-     * @todo   Implement testFetchAll().
-     */
     public function testFetchAllはDBにデータがない場合は固定文字列を返す() {
         $mockAccessor = $this->getMockBuilder('TODOAccessor')->disableOriginalConstructor()->getMock();
         $mockAccessor->method('selectAll')->willReturn(array());
@@ -28,6 +24,12 @@ class TODORepositoryTest extends PHPUnit_Framework_TestCase {
         $mockAccessor = $this->getMockBuilder('TODOAccessor')->disableOriginalConstructor()->getMock();
         $target = new TODORepository($mockAccessor);
         $this->assertTrue($target->add(null));
+    }
+
+    public function testdeleteはnullを渡されたらtrueを返す() {
+        $mockAccessor = $this->getMockBuilder('TODOAccessor')->disableOriginalConstructor()->getMock();
+        $target = new TODORepository($mockAccessor);
+        $this->assertTrue($target->delete(null));
     }
 
 }

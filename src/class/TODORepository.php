@@ -34,4 +34,11 @@ class TODORepository {
         return $this->todoAccessor->insert($todo);
     }
 
+    public function delete(TODO $todo = null) {
+        if ($todo == null) {
+            return true;
+        }
+        return $this->todoAccessor->delete($todo);
+    }
+
 }
