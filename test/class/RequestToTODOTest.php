@@ -10,6 +10,10 @@ class RequestToTODOTest extends PHPUnit_Framework_TestCase {
         $this->assertNull(RequestToTODO::convert(null));
     }
 
+    public function testConvertは空文字を渡されたらnullを返す() {
+        $this->assertNull(RequestToTODO::convert(''));
+    }
+
     public function testConvert() {
         $this->assertNull(RequestToTODO::convert(array('invalidParameter' => 'hoge')));
         $value = 'TODOの中身';

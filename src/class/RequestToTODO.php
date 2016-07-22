@@ -9,6 +9,10 @@ class RequestToTODO {
         if (!isset($requestParameters[TODOViewElems::TODO])) {
             return null;
         }
+        $requestedValue = $requestParameters[TODOViewElems::TODO];
+        if ($requestedValue === '') {
+            return null;
+        }
         return new TODO($requestParameters[TODOViewElems::TODO]);
     }
 
