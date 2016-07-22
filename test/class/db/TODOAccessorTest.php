@@ -50,4 +50,12 @@ class TODOAccessorTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse($accessor->insert(new TODO($value)));
     }
 
+    public function testDelete() {
+        $accessor = new TODOAccessor($this->pdo);
+        $value = '牛乳を買う';
+        $accessor->insert(new TODO($value));
+        $accessor->delete(new TODO($value));
+        $this->assertEquals($accessor->selectAll(), array());
+    }
+
 }

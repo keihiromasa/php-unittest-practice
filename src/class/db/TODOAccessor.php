@@ -17,6 +17,7 @@ class TODOAccessor {
         $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
         $statement->execute();
         $results = $statement->fetchAll();
+        $statement->closeCursor();
         if (count($results) === 0) {
             return null;
         }
@@ -31,6 +32,7 @@ class TODOAccessor {
         $statement = $this->pdo->prepare('select todo from todo_list');
         $statement->execute();
         $results = $statement->fetchAll();
+        $statement->closeCursor();
         return $this->convertToArray($results);
     }
 
@@ -40,6 +42,16 @@ class TODOAccessor {
         }
         $this->pdo->beginTransaction();
         $statement = $this->pdo->prepare('insert into todo_list (todo) values (:todo)');
+        $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
+        $statement->execute();
+        $this->pdo->commit();
+        $statement->closeCursor();
+        return true;
+    }
+
+    public function delete(TODO $todo) {
+        $this->pdo->beginTransaction();
+        $statement = $this->pdo->prepare('delete from todo_list where todo = :todo');
         $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
         $statement->execute();
         $this->pdo->commit();
