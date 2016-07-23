@@ -2,6 +2,7 @@
 
 class TODOViewElems {
 
-    const TODO = 'todo';
+    const TODO_REGIST = 'todo-regist';
+    const TODO_DELETE = 'todo-delete';
 
 }

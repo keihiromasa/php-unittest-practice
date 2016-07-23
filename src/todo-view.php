@@ -26,15 +26,18 @@ require_once dirname(__FILE__) . '/class/view/TODOViewElems.php';
     if (isset($dupulicationMessage)) {
         echo "<span>${dupulicationMessage}</span>";
     }
-    printStartUlTag($todoList);
-    foreach ($todoList as $todo) {
-        echo '<li class="list-group-item">' . $todo->get() . '</li>';
-    }
-    printEndUlTag($todoList);
     ?>
+    <form action = 'todo.php' method = 'post' class = 'form-inline'>
+        <?php
+        printStartUlTag($todoList);
+        foreach ($todoList as $todo) {
+            echo "<button type='submit' class='list-group-item' value='{$todo->get()}' name='" . TODOViewElems::TODO_DELETE . "'>{$todo->get()}</button>";
+        }
+        printEndUlTag($todoList);
+        ?>
 
-    <form action="todo.php" method="post" class="form-inline">
-        <input type="text" class="form-control" name="<?php echo TODOViewElems::TODO ?>" size="40">
+
+        <input type="text" class="form-control" name="<?php echo TODOViewElems::TODO_REGIST ?>" size="40">
         <input type="submit" class="btn btn-primary" value="登録">
     </form>
 </body>

@@ -18,7 +18,7 @@ class RequestToTODOTest extends PHPUnit_Framework_TestCase {
         $this->assertNull(RequestToTODO::convert(array('invalidParameter' => 'hoge')));
         $value = 'TODOの中身';
         $expect = new TODO($value);
-        $this->assertEquals($expect, RequestToTODO::convert(array(TODOViewElems::TODO => $value)));
+        $this->assertEquals($expect, RequestToTODO::convert(array(TODOViewElems::TODO_REGIST => $value)));
     }
 
 }

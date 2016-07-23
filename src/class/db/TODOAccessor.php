@@ -54,7 +54,8 @@ class TODOAccessor {
     public function delete(TODO $todo) {
         $this->pdo->beginTransaction();
         $statement = $this->pdo->prepare('delete from todo_list where todo = :todo');
-        $statement->bindParam(':todo', $todo->get(), PDO::PARAM_STR);
+        $todoValue = $todo->get();
+        $statement->bindParam(':todo', $todoValue, PDO::PARAM_STR);
         $statement->execute();
         $this->pdo->commit();
         return true;
