@@ -5,7 +5,7 @@ require_once 'TODO.php';
 
 class RequestToTODO {
 
-    public static function convert($requestParameters) {
+    public static function convertRegist($requestParameters) {
         if (!isset($requestParameters[TODOViewElems::TODO_REGIST])) {
             return null;
         }

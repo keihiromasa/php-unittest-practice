@@ -7,18 +7,18 @@ require_once dirname(__FILE__) . '/../../src/class/view/TODOViewElems.php';
 class RequestToTODOTest extends PHPUnit_Framework_TestCase {
 
     public function testConvertはnullを渡されたらnullを返す() {
-        $this->assertNull(RequestToTODO::convert(null));
+        $this->assertNull(RequestToTODO::convertRegist(null));
     }
 
     public function testConvertは空文字を渡されたらnullを返す() {
-        $this->assertNull(RequestToTODO::convert(''));
+        $this->assertNull(RequestToTODO::convertRegist(''));
     }
 
     public function testConvert() {
-        $this->assertNull(RequestToTODO::convert(array('invalidParameter' => 'hoge')));
+        $this->assertNull(RequestToTODO::convertRegist(array('invalidParameter' => 'hoge')));
         $value = 'TODOの中身';
         $expect = new TODO($value);
-        $this->assertEquals($expect, RequestToTODO::convert(array(TODOViewElems::TODO_REGIST => $value)));
+        $this->assertEquals($expect, RequestToTODO::convertRegist(array(TODOViewElems::TODO_REGIST => $value)));
     }
 
 }

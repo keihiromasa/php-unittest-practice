@@ -10,7 +10,7 @@ $repository = TODORepositoryFactory::create();
 
 $repository->delete(RequestToTODO::convertDelete($_POST));
 
-if (!$repository->add(RequestToTODO::convert($_POST))) {
+if (!$repository->add(RequestToTODO::convertRegist($_POST))) {
     $dupulicationMessage = '同じTODOは登録できません';
 }
 $todoList = $repository->fetchAll();
