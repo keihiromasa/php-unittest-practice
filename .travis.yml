@@ -1,0 +1,12 @@
+language: php
+php:
+  - "5.3"
+before_install:
+before_script:
+script:
+  - phpunit 
+
+notifications:
+  emails:
+  on_success: always # default: change
+  on_failure: always
