@@ -1,7 +1,7 @@
 <?php
 
-require_once '../src/class/TODORepository.php';
-require_once '../src/class/db/TODOAccessor.php';
+require_once dirname(__FILE__) . '/../../src/class/TODORepository.php';
+require_once dirname(__FILE__) . '/../../src/class/db/TODOAccessor.php';
 
 class TODORepositoryTest extends PHPUnit_Framework_TestCase {
 
