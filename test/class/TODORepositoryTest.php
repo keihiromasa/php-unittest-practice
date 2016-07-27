@@ -32,4 +32,13 @@ class TODORepositoryTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($target->delete(null));
     }
 
+    public function testDeleteはTODOAccessorのdeleteを１回だけ呼び出す() {
+        //TODO 実装する
+        $todo = new TODO('ミルクを買う');
+        $mockAccessor = $this->getMockBuilder('TODOAccessor')->disableOriginalConstructor()->getMock();
+        $mockAccessor->expects($this->once())->method('delete')->with($todo);
+        $target = new TODORepository($mockAccessor);
+        $target->delete($todo);
+    }
+
 }
