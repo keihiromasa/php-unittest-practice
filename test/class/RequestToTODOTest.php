@@ -11,7 +11,7 @@ class RequestToTODOTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testConvertは空文字を渡されたらnullを返す() {
-        $this->assertNull(RequestToTODO::convertRegist(''));
+        $this->assertNull(RequestToTODO::convertRegist(array(TODOViewElems::TODO_REGIST => '')));
     }
 
     public function testConvert() {
