@@ -1,3 +1,5 @@
 *Thumbs.db*
 *.DS_Store*
 mydb.db3
+coverage.db
+testsuites.xml

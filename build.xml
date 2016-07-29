@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="phpunit-sample" basedir="." default="pmd">
+	<property name="phpmd.rules" value="codesize,unusedcode,design,naming,controversial" />
+	<target name="coveragesetup">
+		<coverage-setup database="coverage.db">
+			<fileset dir="src">
+				<include name="**/*.php"/>
+			</fileset>
+		</coverage-setup>
+	</target>
+	<target name="phpunit" depends="coveragesetup">
+		<phpunit codecoverage="true" haltonfailure="true" printsummary="true" haltonerror="true">
+			<formatter todir="./" type="xml"/>
+			<batchtest>
+				<fileset dir="./test">
+					<include name="**/*Test.php"/>
+				</fileset>
+			</batchtest>
+		</phpunit>
+	</target>
+	<target name="report" depends="phpunit">
+		<coverage-report outfile="coverage.xml">
+			<report todir="./" />
+		</coverage-report>
+	</target>
+	<target name="pmd" depends="report">
+		<phpmd rulesets="${phpmd.rules}">
+			<fileset dir="./">
+				<include name="**/*.php"/>
+			</fileset>
+			<formatter type="xml" outfile="pmd-result.xml" />
+		</phpmd>
+	</target>
+</project>
