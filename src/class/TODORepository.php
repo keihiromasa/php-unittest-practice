@@ -3,7 +3,7 @@
 require_once dirname(__FILE__) . '/TODO.php';
 
 /**
- * Description of TODORepository
+ * TODOオブジェクトを管理するリポジトリです。オブジェクトの追加、削除などはこのクラスを介して行ないます。
  *
  * @author hiromasa.kei
  */

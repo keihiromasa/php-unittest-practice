@@ -2,6 +2,9 @@
 
 require_once dirname(__FILE__) . '/../TODO.php';
 
+/**
+ * データベースの　todo_list　テーブル用アクセサです。
+ */
 class TODOAccessor {
 
     const COLUMN_TODO = 'todo';
